@@ -1,0 +1,16 @@
+MODULE = tensorflow-liite-micro_features
+
+SRCXXEXT = cc
+SRCXXEXCLUDE := $(wildcard *_test.$(SRCXXEXT))
+
+CFLAGS += -DTF_LITE_STATIC_MEMORY
+CXXEXFLAGS += -Wno-unused-parameter
+
+NO_AUTO_SRC := 1
+SRCXX := \
+    tiny_conv_micro_features_model_data.cc \
+    micro_model_settings.cc \
+    micro_features_generator.cc \
+    #
+
+include $(RIOTBASE)/Makefile.base

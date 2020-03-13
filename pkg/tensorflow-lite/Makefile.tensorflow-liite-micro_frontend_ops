@@ -1,0 +1,14 @@
+MODULE = tensorflow-liite-micro_frontend_ops
+
+SRCXXEXT = cc
+SRCXXEXCLUDE := $(wildcard *_test.$(SRCXXEXT))
+
+CFLAGS += -DTF_LITE_STATIC_MEMORY
+CXXEXFLAGS += -Wno-unused-parameter
+
+NO_AUTO_SRC := 1
+SRCXX := \
+    audio_microfrontend_op.cc \
+    #
+
+include $(RIOTBASE)/Makefile.base

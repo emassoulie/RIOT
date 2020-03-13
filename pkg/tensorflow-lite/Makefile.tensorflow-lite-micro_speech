@@ -1,0 +1,22 @@
+MODULE = tensorflow-lite-micro_speech
+
+SRCXXEXT = cc
+SRCXXEXCLUDE := $(wildcard *_test.$(SRCXXEXT))
+
+CFLAGS += -DTF_LITE_STATIC_MEMORY
+CXXEXFLAGS += -Wno-unused-parameter
+
+NO_AUTO_SRC := 1
+SRCXX := \
+    command_responder.cc \
+    feature_provider.cc \
+    main_functions.cc \
+    audio_provider.cc \
+    recognize_commands.cc \
+    no_1000ms_sample_data.cc \
+    no_30ms_sample_data.cc \
+    yes_1000ms_sample_data.cc \
+    yes_30ms_sample_data.cc \
+    #
+
+include $(RIOTBASE)/Makefile.base

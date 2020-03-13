@@ -5,7 +5,7 @@ PKG_LICENSE=Apache2.0
 
 include $(RIOTBASE)/pkg/pkg.mk
 
-TF_MODULES   = tensorflow-lite-hello_world
+TF_MODULES   = tensorflow-lite-hello_world tensorflow-lite-micro_speech tensorflow-liite-micro_features tensorflow-liite-micro_frontend tensorflow-liite-micro_frontend_ops tensorflow-liite-micro_frontend_lib
 TF_USEMODULE = $(filter $(TF_MODULES),$(USEMODULE))
 
 .PHONY: tensorflow-lite tensorflow-lite-%
@@ -27,3 +27,15 @@ tensorflow-lite: $(TF_USEMODULE)
 
 tensorflow-lite-%:
 	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/micro/examples/$* -f $(CURDIR)/Makefile.$(PKG_NAME)-$*
+
+tensorflow-liite-micro_features:
+	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/micro/examples/micro_speech/micro_features -f $(CURDIR)/Makefile.tensorflow-liite-micro_features
+
+tensorflow-liite-micro_frontend:
+	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/experimental/microfrontend -f $(CURDIR)/Makefile.tensorflow-liite-micro_frontend
+
+tensorflow-liite-micro_frontend_lib:
+	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/experimental/microfrontend/lib -f $(CURDIR)/Makefile.tensorflow-liite-micro_frontend_lib
+
+tensorflow-liite-micro_frontend_ops:
+	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/experimental/microfrontend/ops -f $(CURDIR)/Makefile.tensorflow-liite-micro_frontend_ops
