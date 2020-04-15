@@ -10,6 +10,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
+/*periph_pdm deals with the pdm microphone as follows:
+while (1) {
+        msg_t msg;
+        msg_receive(&msg);
+        int16_t *buf = (int16_t *)msg.content.ptr;
+#if PDM_DATA_PRINT_BINARY
+        stdio_write((uint8_t *)buf, PDM_BUF_SIZE >> 2);
+#else
+        for (unsigned idx = 0; idx < PDM_BUF_SIZE; ++idx) {
+            printf("%i\n", buf[idx]);
+        }
+#endif
+    }
+
+    return 0;
+*/
+
 #include "tensorflow/lite/micro/examples/micro_speech/audio_provider.h"
 
 #include "tensorflow/lite/micro/examples/micro_speech/micro_features/micro_model_settings.h"
