@@ -1,15 +1,21 @@
 MODULE = tensorflow-liite-micro_frontend_lib
 
-SRCXXEXT = c
-SRCXXEXCLUDE := $(wildcard *_test.$(SRCXXEXT))
+CFLAGS += -Wno-sign-compare
 
-CFLAGS += -DTF_LITE_STATIC_MEMORY
-CXXEXFLAGS += -Wno-unused-parameter
-
-NO_AUTO_SRC := 1
-SRCXX := \
-    frontend_util.c \
+SRC = \
+    filterbank.c \
+    filterbank_util.c \
     frontend.c \
+    frontend_util.c \
+    log_scale.c \
+    log_scale_util.c \
+    log_lut.c \
+    noise_reduction.c \
+    noise_reduction_util.c \
+    pcan_gain_control.c \
+    pcan_gain_control_util.c \
+    window.c \
+    window_util.c \
     #
 
 include $(RIOTBASE)/Makefile.base

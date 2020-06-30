@@ -3,7 +3,6 @@ MODULE = tensorflow-lite-micro_speech
 SRCXXEXT = cc
 SRCXXEXCLUDE := $(wildcard *_test.$(SRCXXEXT))
 
-CFLAGS += -DTF_LITE_STATIC_MEMORY
 CXXEXFLAGS += -Wno-unused-parameter
 
 NO_AUTO_SRC := 1

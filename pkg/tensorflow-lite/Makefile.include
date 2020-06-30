@@ -1,8 +1,13 @@
 INCLUDES += -I$(PKGDIRBASE)/tensorflow-lite
 CFLAGS += -DTF_LITE_STATIC_MEMORY
 CFLAGS += -DTF_LITE_USE_GLOBAL_ROUND
+CFLAGS += -Wno-attributes
+
+CXXEXFLAGS += -std=c++11
 
 ifneq (,$(filter cortex-m%,$(CPU_CORE)))
   # LLVM/clang triggers a hard fault on Cortex-M
   TOOLCHAINS_BLACKLIST += llvm
 endif
+
+CFLAGS += -I/home/aabadie/.local/lib/python3.8/site-packages/tensorflow/include/

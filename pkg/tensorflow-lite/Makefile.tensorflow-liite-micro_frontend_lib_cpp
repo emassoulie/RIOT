@@ -1,0 +1,13 @@
+MODULE = tensorflow-liite-micro_frontend_lib_cpp
+
+CXXEXFLAGS += -Wno-unused-parameter
+CXXEXFLAGS += -Wno-ignored-qualifiers
+
+NO_AUTO_SRC = 1
+SRCXXEXT = cc
+SRCXX := \
+    fft.cc \
+    fft_util.cc \
+    #
+
+include $(RIOTBASE)/Makefile.base

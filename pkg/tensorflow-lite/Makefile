@@ -5,7 +5,16 @@ PKG_LICENSE=Apache2.0
 
 include $(RIOTBASE)/pkg/pkg.mk
 
-TF_MODULES   = tensorflow-lite-hello_world tensorflow-lite-micro_speech tensorflow-liite-micro_features tensorflow-liite-micro_frontend tensorflow-liite-micro_frontend_ops tensorflow-liite-micro_frontend_lib
+TF_MODULES   = \
+    tensorflow-lite-hello_world \
+    tensorflow-lite-micro_speech \
+    tensorflow-liite-micro_features \
+    tensorflow-liite-micro_frontend \
+    tensorflow-liite-micro_frontend_ops \
+    tensorflow-liite-micro_frontend_lib \
+    tensorflow-liite-micro_frontend_lib_cpp \
+    #
+
 TF_USEMODULE = $(filter $(TF_MODULES),$(USEMODULE))
 
 .PHONY: tensorflow-lite tensorflow-lite-%
@@ -28,7 +37,7 @@ tensorflow-lite: $(TF_USEMODULE)
 tensorflow-lite-%:
 	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/micro/examples/$* -f $(CURDIR)/Makefile.$(PKG_NAME)-$*
 
-tensorflow-liite-micro_features:
+tensorflow-liite-micro_features: $(PKG_SOURCE_DIR)/tensorflow/core/framework/op_def.pb.h $(PKG_SOURCE_DIR)/tensorflow/core/framework/api_def.pb.h
 	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/micro/examples/micro_speech/micro_features -f $(CURDIR)/Makefile.tensorflow-liite-micro_features
 
 tensorflow-liite-micro_frontend:
@@ -37,5 +46,14 @@ tensorflow-liite-micro_frontend:
 tensorflow-liite-micro_frontend_lib:
 	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/experimental/microfrontend/lib -f $(CURDIR)/Makefile.tensorflow-liite-micro_frontend_lib
 
+tensorflow-liite-micro_frontend_lib_cpp:
+	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/experimental/microfrontend/lib -f $(CURDIR)/Makefile.tensorflow-liite-micro_frontend_lib_cpp
+
 tensorflow-liite-micro_frontend_ops:
 	"$(MAKE)" -C $(PKG_SOURCE_DIR)/tensorflow/lite/experimental/microfrontend/ops -f $(CURDIR)/Makefile.tensorflow-liite-micro_frontend_ops
+
+$(PKG_SOURCE_DIR)/tensorflow/core/framework/op_def.pb.h:
+	$(Q)cd $(PKG_SOURCE_DIR) && protoc --proto_path=. --cpp_out=. tensorflow/core/framework/op_def.proto
+
+$(PKG_SOURCE_DIR)/tensorflow/core/framework/api_def.pb.h:
+	$(Q)cd $(PKG_SOURCE_DIR) && protoc --proto_path=. --cpp_out=. tensorflow/core/framework/api_def.proto
