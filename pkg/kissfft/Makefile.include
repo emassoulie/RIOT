@@ -1,0 +1,2 @@
+INCLUDES += -I$(PKGDIRBASE)/kissfft
+INCLUDES += -I$(PKGDIRBASE)/kissfft/tools

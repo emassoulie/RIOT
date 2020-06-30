@@ -9,6 +9,7 @@ include ../Makefile.tests_common
 EXAMPLE ?= micro_speech
 
 USEPKG += tensorflow-lite
+USEPKG += kissfft
 
 # internal mnist example is available as an external module
 ifneq (hello_world,$(EXAMPLE))

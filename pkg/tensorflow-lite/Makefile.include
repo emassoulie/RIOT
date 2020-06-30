@@ -1,4 +1,6 @@
 INCLUDES += -I$(PKGDIRBASE)/tensorflow-lite
+CFLAGS += -DTF_LITE_STATIC_MEMORY
+CFLAGS += -DTF_LITE_USE_GLOBAL_ROUND
 
 ifneq (,$(filter cortex-m%,$(CPU_CORE)))
   # LLVM/clang triggers a hard fault on Cortex-M
