@@ -1,0 +1,3 @@
+MODULE = kissfft
+
+include $(RIOTBASE)/Makefile.base

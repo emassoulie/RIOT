@@ -1,0 +1,5 @@
+MODULE = kissfft_tools
+
+SRC = kiss_fftr.c kiss_fftnd.c kiss_fftndr.c
+
+include $(RIOTBASE)/Makefile.base

@@ -1,0 +1,44 @@
+From ec230d5e260459750dab897dc21865c8ecd3cefd Mon Sep 17 00:00:00 2001
+From: user <user@riot-vm.vm>
+Date: Wed, 10 Jun 2020 14:00:16 +0000
+Subject: [PATCH 1/1] fix log
+
+---
+ kiss_fft_log.h | 14 +++++---------
+ 1 file changed, 5 insertions(+), 9 deletions(-)
+
+diff --git a/kiss_fft_log.h b/kiss_fft_log.h
+index b5b631a..fbcad41 100644
+--- a/kiss_fft_log.h
++++ b/kiss_fft_log.h
+@@ -8,11 +8,7 @@
+ 
+ #ifndef kiss_fft_log_h
+ #define kiss_fft_log_h
+-
+-#define ERROR 1
+-#define WARNING 2
+-#define INFO 3
+-#define DEBUG 4
++#include "log.h"
+ 
+ #define STRINGIFY(x) #x
+ #define TOSTRING(x) STRINGIFY(x)
+@@ -26,10 +22,10 @@
+     fprintf(stderr, "\n")
+ #endif
+ 
+-#define KISS_FFT_ERROR(...) KISS_FFT_LOG_MSG(ERROR, __VA_ARGS__)
+-#define KISS_FFT_WARNING(...) KISS_FFT_LOG_MSG(WARNING, __VA_ARGS__)
+-#define KISS_FFT_INFO(...) KISS_FFT_LOG_MSG(INFO, __VA_ARGS__)
+-#define KISS_FFT_DEBUG(...) KISS_FFT_LOG_MSG(DEBUG, __VA_ARGS__)
++#define KISS_FFT_ERROR LOG_ERROR
++#define KISS_FFT_WARNING LOG_WARNING
++#define KISS_FFT_INFO LOG_INFO
++#define KISS_FFT_DEBUG LOG_DEBUG
+ 
+ 
+ 
+-- 
+2.17.1
+

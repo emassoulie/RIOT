@@ -1,0 +1,7 @@
+/**
+ * @defgroup pkg_kissfft KISS FFT
+ * @ingroup  pkg
+ * @brief    Fast Fourier Transform library
+ *
+ * @see      https://github.com/mborgerding/kissfft
+ */
